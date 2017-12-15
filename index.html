@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style media="screen">
+    *{
+      padding: 0px;
+      margin: 0px;
+    }
+      body{
+        font-family: arial;
+        background-color: #f1f1f1;
+      }
+      ul{
+        list-style: none;
+      }
+
+      li{
+        background-color: #fff;
+        padding: 10px;
+        margin: 10px;
+        width: 80px;
+      }
+      .clicked{
+        background-color: #A24386;
+        color: #fff;
+      }
+      input,button,div{
+        padding: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="nvem" placeholder="Não vem">
+      <button type="button" id="vida" onclick="vida()">Vida</button>
+    </div>
+
+    <ul id="res"></ul>
+  </body>
+
+  <script type="text/javascript">
+
+    var vol = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    var g1,g2,g3,g4,g5,g6,g7
+    var c = []
+    res = document.getElementById("res")
+
+  function vida()
+    {
+
+        var nvem = document.getElementById('nvem').value
+        var choices = nvem.split(",")
+
+        for (var i = 1; i <= choices.length; i++)
+          vol.splice(parseInt(choices[i]) - i, 1)
+
+        vol.sort(function() {
+          return .5 - Math.random()
+        })
+
+        g1 = pad(vol[0]) +  " | " + pad(vol[1])  + " | " + pad(vol[2]) + "<br>"
+        g2 = pad(vol[3]) +  " | " + pad(vol[4])  + " | " + pad(vol[5]) + "<br>"
+        g3 = pad(vol[6]) +  " | " + pad(vol[7]) + " | " + pad(vol[8]) + "<br>"
+        g4 = pad(vol[9]) +  " | " + pad(vol[10]) + " | "  + pad(vol[11]) + "<br>"
+        g5 = pad(vol[12]) + " | " + pad(vol[13]) + " | "  + pad(vol[14]) + "<br>"
+        g6 = pad(vol[15]) +  " | " + pad(vol[16]) + " | "  + pad(vol[17]) + "<br>"
+        g7 = pad(vol[18]) +  " | " + pad(vol[19]) + " | "  + pad(vol[20]) + "<br>"
+
+        c[0] =  g1+g3+g4+g5+g6
+        c[1] =  g1+g2+g4+g5+g6
+        c[2] =  g1+g2+g3+g5+g6
+        c[3] =  g1+g2+g3+g4+g6
+        c[4] =  g1+g2+g3+g4+g5
+        c[5] =  g1+g3+g4+g5+g7
+        c[6] =  g1+g2+g4+g5+g7
+        c[7] =  g1+g2+g3+g5+g7
+        c[8] =  g1+g2+g3+g4+g7
+        c[9] =  g2+g3+g4+g5+g6
+        c[10] = g2+g4+g5+g6+g7
+        c[11] = g2+g3+g5+g6+g7
+        c[12] = g2+g3+g4+g6+g7
+        c[13] = g2+g3+g4+g5+g7
+        c[14] = g2+g3+g4+g6+g7
+        c[15] = g3+g4+g5+g6+g7
+
+        for (var i = 0; i < 16; i++){
+          var node = document.createElement("li")
+          node.innerHTML = c[i]
+          res.appendChild(node)
+        }
+
+    }
+
+     res.addEventListener("click", function(e) {
+       if (e.target && e.target.matches("li"))
+         e.target.className = "clicked"
+     })
+
+    function pad(n){
+      return n<10 ? "0"+n: n
+    }
+
+  </script>
+</html>
