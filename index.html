@@ -22,11 +22,15 @@
         padding: 10px;
         margin: 10px;
         width: 80px;
-        float: left;
+        display: inline-block;
+        cursor: pointer;
       }
       .clicked{
         background-color: #A24386;
         color: #fff;
+      }
+      .border{
+        border: 3px solid #5cc773;
       }
       input,button,div{
         padding: 10px;
@@ -98,10 +102,16 @@
       }
     }
      res.addEventListener("click", function(e) {
-       if (e.target && e.target.matches("li"))
-         e.target.className = "clicked"
+       clear()
+       if (e.target && e.target.matches('li')) e.target.className = 'clicked border'
      })
 
+     function clear(){
+       var x = res.getElementsByTagName("LI").length;
+       for (var i = 0; i <x; i++) {
+          res.getElementsByTagName('LI')[i].classList.remove('border')
+       }
+     }
     function pad(n){
       return n<10 ? "0"+n: n
     }
