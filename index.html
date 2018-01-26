@@ -59,7 +59,8 @@
 
         var nvem = document.getElementById('nvem').value
         var choices = nvem.split(",")
-        for (var i = 1; i <= choices.length; i++) vol.splice(parseInt(choices[i]) - i, 1)
+
+        for (var i = 0; i <= choices.length-1;i++) vol.splice(parseInt(choices[i])-(i+1), 1);
         for(i=0;i<3;i++) create()
 
     }
